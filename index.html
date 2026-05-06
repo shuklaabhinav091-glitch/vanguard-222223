@@ -818,7 +818,8 @@ footer {
       </div>
     </div>
     <div class="reveal">
-      <form id="investorForm" action="#" method="post">
+      <form id="investorForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="24b096a8-bee5-41bf-b56c-e163bdfa5fd0">
         <div class="form-group"><input type="text" placeholder="Full name" required></div>
         <div class="form-group"><input type="email" placeholder="Email address" required></div>
         <div class="form-group"><input type="tel" placeholder="Phone / WhatsApp"></div>
@@ -920,14 +921,7 @@ footer {
   setTimeout(() => { liveMetrics.forEach(m => { document.getElementById(m.bar).style.width = m.widths[1] + '%'; }); }, 200);
 
   // simple form handler (prevents actual submit but shows alert)
-  const form = document.getElementById('investorForm');
-  if(form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      alert('✅ Thank you for reaching out, Abhinav Shukla (+91 73047 41237) will respond within 24 hours.');
-      form.reset();
-    });
-  }
+
 </script>
 </body>
 </html>
