@@ -1,0 +1,934 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VANGUARD — Intelligent Dust Suppression | Investor Brief</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700;800&family=Share+Tech+Mono&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cyan: #00f0ff;
+  --cyan-glow: rgba(0, 240, 255, 0.25);
+  --orange: #ff7a2f;
+  --bg-primary: #05090c;
+  --bg-secondary: #0a1115;
+  --bg-card: #0f181e;
+  --border-glow: rgba(0, 240, 255, 0.2);
+  --text-white: #f0f9ff;
+  --text-gray: #9ab3c2;
+  --text-dim: #5a7685;
+  --danger: #ff5a5a;
+  --success: #00e5a0;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-white);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+/* subtle scanline */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.012) 2px, rgba(0,240,255,0.012) 4px);
+  z-index: 9999;
+}
+
+/* navigation */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 56px;
+  background: rgba(5, 9, 12, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-glow);
+}
+
+.logo {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: 6px;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--text-white);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--text-gray);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--cyan);
+}
+
+.badge-investor {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  padding: 6px 16px;
+}
+
+/* hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 56px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 240, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.02) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero-content {
+  max-width: 760px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 5px;
+  color: var(--cyan);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 48px;
+  height: 2px;
+  background: var(--cyan);
+}
+
+.hero-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: clamp(58px, 10vw, 120px);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+  margin-bottom: 28px;
+}
+
+.hero-title .accent {
+  color: var(--cyan);
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-gray);
+  margin-bottom: 48px;
+  max-width: 580px;
+  line-height: 1.6;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 56px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-number {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: 48px;
+  color: var(--cyan);
+  line-height: 1;
+}
+
+.stat-number .unit {
+  font-size: 22px;
+  color: var(--cyan-glow);
+}
+
+.stat-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.cta-group {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 4px;
+  padding: 14px 34px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.btn-primary {
+  background: var(--cyan);
+  color: #05090c;
+}
+
+.btn-primary:hover {
+  background: var(--text-white);
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+}
+
+.btn-outline:hover {
+  background: rgba(0, 240, 255, 0.08);
+  transform: translateY(-3px);
+}
+
+/* live panel */
+.live-panel {
+  position: absolute;
+  right: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 290px;
+  background: rgba(10, 17, 21, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glow);
+  z-index: 10;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.panel-header {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+  background: rgba(0, 240, 255, 0.04);
+}
+
+.panel-metrics {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metric-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+}
+
+.bar-bg {
+  height: 4px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+}
+
+.bar-fill-live {
+  height: 100%;
+  width: 0%;
+  transition: width 0.8s ease;
+}
+
+.metric-flex {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+}
+
+.sim-note {
+  font-size: 7px;
+  text-align: center;
+  margin-top: 12px;
+  color: var(--text-dim);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 10px;
+}
+
+/* sections */
+section {
+  padding: 100px 56px;
+  position: relative;
+}
+
+.section-badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section-badge::before {
+  content: '//';
+  color: var(--text-dim);
+}
+
+h2 {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 800;
+  font-size: clamp(38px, 6vw, 68px);
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 28px;
+}
+
+h2 .highlight {
+  color: var(--cyan);
+}
+
+.bg-dark-accent {
+  background: var(--bg-secondary);
+}
+
+.divider-light {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+  width: 100%;
+}
+
+/* problem grid */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-top: 48px;
+  align-items: center;
+}
+
+.problem-text p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-gray);
+  margin-bottom: 24px;
+}
+
+.alert-compliance {
+  background: rgba(255, 90, 90, 0.05);
+  border-left: 3px solid var(--danger);
+  padding: 20px 24px;
+}
+
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  padding: 28px;
+}
+
+.bar-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bar-unit {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.bar-track {
+  height: 32px;
+  background: rgba(255,255,255,0.03);
+}
+
+.bar {
+  height: 100%;
+  width: 0%;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  transition: width 1.2s cubic-bezier(0.22, 0.97, 0.36, 1);
+}
+
+.bar-legal {
+  background: var(--cyan);
+  color: #05090c;
+}
+.bar-actual {
+  background: var(--danger);
+}
+.bar-target {
+  background: var(--orange);
+}
+
+/* steps */
+.steps-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.step-item {
+  background: var(--bg-card);
+  padding: 32px 24px;
+  border: 1px solid rgba(0, 240, 255, 0.06);
+  position: relative;
+  transition: 0.25s;
+}
+
+.step-item:hover {
+  border-color: var(--cyan);
+  transform: translateY(-4px);
+}
+
+.step-num-lg {
+  font-size: 70px;
+  font-weight: 800;
+  font-family: 'Rajdhani', sans-serif;
+  color: rgba(0, 240, 255, 0.06);
+  position: absolute;
+  right: 16px;
+  top: 8px;
+  line-height: 1;
+}
+
+/* tech */
+.tech-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-top: 56px;
+}
+
+.spec-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.spec-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--bg-card);
+  border-left: 2px solid transparent;
+}
+
+.spec-line:hover {
+  border-left-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.02);
+}
+
+.ai-preview {
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  padding: 32px;
+}
+
+.ai-flow-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.flow-card {
+  background: #071014;
+  padding: 16px;
+  text-align: center;
+}
+
+.bullet-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+.bullet-list li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+/* table */
+.table-compare {
+  overflow-x: auto;
+  margin-top: 48px;
+}
+
+.comparison {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.comparison th {
+  text-align: left;
+  padding: 16px 20px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border-glow);
+}
+
+.comparison td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.row-highlight {
+  background: rgba(0, 240, 255, 0.05);
+  border-left: 2px solid var(--cyan);
+}
+
+/* metrics grid */
+.metrics-3col {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 56px;
+}
+
+.metric-tile {
+  background: var(--bg-card);
+  padding: 36px 24px;
+  border: 1px solid rgba(0, 240, 255, 0.06);
+}
+
+/* contact form — investor ready */
+.contact-section {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-glow);
+  border-bottom: 1px solid var(--border-glow);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  margin-top: 48px;
+}
+
+.contact-info h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 28px;
+  margin-bottom: 24px;
+  color: var(--cyan);
+}
+
+.direct-line {
+  background: var(--bg-card);
+  padding: 20px;
+  margin: 20px 0;
+  border-left: 3px solid var(--cyan);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glow);
+  padding: 14px 18px;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-white);
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 8px rgba(0,240,255,0.2);
+}
+
+.btn-submit {
+  background: var(--cyan);
+  color: #05090c;
+  font-weight: 700;
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 14px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+
+.founder-row {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.founder-avatar {
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 52px;
+  font-weight: 800;
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--cyan);
+}
+
+footer {
+  padding: 32px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  background: var(--bg-primary);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .navbar { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 120px 24px 60px; }
+  .live-panel { display: none; }
+  section { padding: 60px 24px; }
+  .problem-grid, .tech-split, .contact-grid, .steps-4 { grid-template-columns: 1fr; }
+  .metrics-3col { grid-template-columns: 1fr; }
+  .founder-row { flex-direction: column; text-align: center; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="logo">VAN<span>GUARD</span></div>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#tech">Tech</a>
+    <a href="#compare">Compare</a>
+    <a href="#metrics">Metrics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="badge-investor">INVESTOR DECK →</div>
+</nav>
+
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">NEXT-GEN DUST SUPPRESSION</div>
+    <h1 class="hero-title">VAN<span class="accent">GUARD</span><br>DSS</h1>
+    <p class="hero-sub">Sensor-steered, servo-aimed mist curtain for jaw-crusher discharge. Eliminate silicosis risk, achieve DGMS compliance, and reduce water usage by 99%+.</p>
+    <div class="hero-stats">
+      <div class="stat-block"><div class="stat-number" data-target="1560">0<span class="unit">×</span></div><div class="stat-label">less water vs conventional</div></div>
+      <div class="stat-block"><div class="stat-number" data-target="95">0<span class="unit">%</span></div><div class="stat-label">prediction accuracy*</div></div>
+      <div class="stat-block"><div class="stat-number" data-target="5760">0<span class="unit">L</span></div><div class="stat-label">annual water use</div></div>
+    </div>
+    <div class="cta-group">
+      <a href="#tech" class="btn btn-primary">System deep dive</a>
+      <a href="#contact" class="btn btn-outline">Investor contact</a>
+    </div>
+  </div>
+  <div class="live-panel">
+    <div class="panel-header"><span style="color:var(--cyan);">LIVE MONITOR</span><span style="font-size:8px;">SIMULATION</span><span style="color:var(--danger);">●</span></div>
+    <div class="panel-metrics">
+      <div class="metric-row"><div class="metric-label">PM2.5 CONCENTRATION</div><div class="bar-bg"><div id="barPM" class="bar-fill-live" style="background:var(--cyan);"></div></div><div class="metric-flex"><span id="pmValue">2.1 mg/m³</span><span style="color:var(--cyan);">COMPLIANT</span></div></div>
+      <div class="metric-row"><div class="metric-label">PLUME ANGLE</div><div class="bar-bg"><div id="barAngle" class="bar-fill-live" style="background:var(--orange);"></div></div><div class="metric-flex"><span id="angleValue">+18°</span><span>TRACKED</span></div></div>
+      <div class="metric-row"><div class="metric-label">MIST DUTY CYCLE</div><div class="bar-bg"><div id="barDuty" class="bar-fill-live" style="background:var(--cyan);"></div></div><div class="metric-flex"><span id="dutyValue">20%</span><span>ACTIVE</span></div></div>
+      <div class="sim-note">*live telemetry: field prototype data simulation</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="problem" class="bg-dark-accent">
+  <div class="section-badge">THE CRISIS</div>
+  <h2>CRUSHER DUST: A <span class="highlight">SILENT EPIDEMIC</span></h2>
+  <div class="problem-grid">
+    <div class="problem-text reveal"><p>In 200–300 TPH stone crushers, the jaw-crusher discharge zone sees PM2.5/PM10 levels <strong style="color:var(--danger);">10–20x above DGMS legal limits</strong>. Workers face irreversible silicosis — a fatal, preventable lung disease.</p><p>Conventional / unregulated methods (crude pipe sprinklers) flood sites with 9 million+ litres of water annually yet fail to capture respirable dust. High-end fog cannons cost crores and remain energy-inefficient.</p><div class="alert-compliance"><p>⚠ NGT penalties now reach ₹5 crore per violation. Maharashtra Pollution Control Board has shut down multiple plants — compliance is mandatory, not optional.</p></div></div>
+    <div class="chart-card reveal"><div class="bar-stack"><div class="bar-unit"><div class="bar-labels"><span>DGMS LEGAL LIMIT</span><span>3 mg/m³</span></div><div class="bar-track"><div class="bar bar-legal" data-w="8" style="width:0%">3</div></div></div><div class="bar-unit"><div class="bar-labels"><span>ACTUAL MEASURED (FIELD)</span><span style="color:var(--danger);">30–60 mg/m³</span></div><div class="bar-track"><div class="bar bar-actual" data-w="90" style="width:0%">30-60</div></div></div><div class="bar-unit"><div class="bar-labels"><span>VANGUARD TARGET</span><span style="color:var(--orange);">≤ 2.5 mg/m³</span></div><div class="bar-track"><div class="bar bar-target" data-w="6" style="width:0%">2.5</div></div></div></div><div style="margin-top:20px;font-size:9px;">SOURCE: INDEPENDENT SITE SURVEY, MAHARASHTRA CRUSHER CLUSTER</div></div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="tech">
+  <div class="section-badge">SYSTEM ARCHITECTURE</div>
+  <h2>SENSE · THINK · <span class="highlight">ACT</span> · MAINTAIN</h2>
+  <div class="steps-4">
+    <div class="step-item reveal"><div class="step-num-lg">01</div><span style="font-size:28px;">📡</span><div class="step-title" style="font-family:'Rajdhani';color:var(--cyan);font-size:22px;margin:12px 0 8px;">Sense</div><div>PM2.5/PM10 sensor array captures 144k daily data points at jaw-crusher discharge.</div></div>
+    <div class="step-item reveal"><div class="step-num-lg">02</div><span style="font-size:28px;">🧠</span><div class="step-title" style="font-family:'Rajdhani';color:var(--cyan);font-size:22px;margin:12px 0 8px;">Think</div><div>Edge AI decides activation only during dust spikes → zero idle waste.</div></div>
+    <div class="step-item reveal"><div class="step-num-lg">03</div><span style="font-size:28px;">💧</span><div class="step-title" style="font-family:'Rajdhani';color:var(--cyan);font-size:22px;margin:12px 0 8px;">Act</div><div>Servo-aimed nozzle + 40kHz ultrasonic mist (5–10μm droplets) captures dust.</div></div>
+    <div class="step-item reveal"><div class="step-num-lg">04</div><span style="font-size:28px;">⚙️</span><div class="step-title" style="font-family:'Rajdhani';color:var(--cyan);font-size:22px;margin:12px 0 8px;">Maintain</div><div>Self-cleaning vibration motor & health monitoring — true industrial IoT.</div></div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="specs" class="bg-dark-accent">
+  <div class="section-badge">TECHNICAL SPECIFICATIONS</div>
+  <h2>PRECISION <span class="highlight">ENGINEERING</span></h2>
+  <div class="tech-split">
+    <div class="spec-container reveal"><div class="spec-line"><span class="spec-label">Droplet Size</span><span class="spec-value">5–10 μm</span></div><div class="spec-line"><span class="spec-label">Transducer Frequency</span><span class="spec-value">40 kHz</span></div><div class="spec-line"><span class="spec-label">Water Flow Rate</span><span class="spec-value">0.16 L/min</span></div><div class="spec-line"><span class="spec-label">Annual Water Footprint</span><span class="spec-value">5,760 L/yr</span></div><div class="spec-line"><span class="spec-label">Pump Power</span><span class="spec-value">0.5 HP (20% duty cycle)</span></div><div class="spec-line"><span class="spec-label">Self-Clean Interval</span><span class="spec-value">10 min (vibration-based)</span></div></div>
+    <div class="ai-preview reveal"><h3 style="font-family:'Rajdhani';font-size:26px;">AI Predictive Layer</h3><div class="ai-flow-row"><div class="flow-card"><div>Current</div><strong>Reactive</strong></div><span style="color:var(--cyan);font-size:28px;">→</span><div class="flow-card"><div>Phase 2</div><strong>Predictive</strong></div></div><ul class="bullet-list"><li>Forecast dust spikes 45 seconds in advance (target 95% accuracy)</li><li>Edge Impulse neural network training — 144k daily data points</li><li>50% additional water reduction (down to 0.08 L/min in predictive mode)</li><li>Pre-position nozzles before dust cloud forms → zero latency</li></ul></div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="compare">
+  <div class="section-badge">COMPETITIVE ANALYSIS</div>
+  <h2>VANGUARD vs <span class="highlight">CONVENTIONAL</span></h2>
+  <div class="table-compare reveal"><table class="comparison"><thead><tr><th>SOLUTION</th><th>WATER USE (annual)</th><th>PRECISION</th><th>INTELLIGENCE</th><th>COMPLIANCE</th></tr></thead><tbody><tr><td style="font-weight:600;">Conventional / Unregulated Sprinklers</td><td class="red">~9,000,000 L</td><td class="red">Blunt / none</td><td class="red">None</td><td class="red">Fails NGT</td></tr><tr><td style="font-weight:600;">Mist Lines (static)</td><td class="orange">540,000 L</td><td class="orange">Fixed pattern</td><td class="red">No AI</td><td class="orange">Partial</td></tr><tr><td style="font-weight:600;">Industrial Fog Cannons</td><td class="orange">High</td><td class="orange">Broad area</td><td class="red">No edge</td><td class="orange">Partial</td></tr><tr class="row-highlight"><td style="font-weight:800;">VANGUARD DSS</td><td class="green">5,760 L</td><td class="green">Servo-aimed</td><td class="green">AI + real-time</td><td class="green">DGMS ready</td></tr></tbody></table></div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="metrics" class="bg-dark-accent">
+  <div class="section-badge">IMPACT METRICS</div>
+  <h2>KEY <span class="highlight">PERFORMANCE INDICATORS</span></h2>
+  <div class="metrics-3col">
+    <div class="metric-tile reveal"><div class="metric-tag">Water efficiency</div><div class="stat-number"><span data-metric="1560">0</span><span class="unit">×</span></div><div class="metric-desc">vs conventional methods — from millions of litres to 5,760L/year</div></div>
+    <div class="metric-tile reveal"><div class="metric-tag">Energy reduction</div><div class="stat-number"><span data-metric="90">0</span><span class="unit">%</span></div><div class="metric-desc">0.5 HP vs 2HP always-on — 222 kWh/yr vs 4,500 kWh/yr</div></div>
+    <div class="metric-tile reveal"><div class="metric-tag">DGMS compliance</div><div class="stat-number"><span data-metric="100">0</span><span class="unit">%</span></div><div class="metric-desc">PM2.5/PM10 below 3 mg/m³ — zero penalty exposure</div></div>
+    <div class="metric-tile reveal"><div class="metric-tag">AI accuracy (roadmap)</div><div class="stat-number"><span data-metric="95">0</span><span class="unit">%</span></div><div class="metric-desc">predictive spike detection — 45s lead time</div></div>
+    <div class="metric-tile reveal"><div class="metric-tag">Data density</div><div class="stat-number"><span data-metric="144">0</span><span class="unit">K</span></div><div class="metric-desc">daily sensor readings / continuous logging</div></div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<section id="roadmap">
+  <div class="section-badge">GO-TO-MARKET</div>
+  <h2>3-PHASE <span class="highlight">EXECUTION</span></h2>
+  <div class="tech-split" style="margin-top:0;">
+    <div><div class="timeline-step" style="margin-bottom:28px;"><div style="font-size:44px;font-weight:800;color:rgba(0,240,255,0.2);">01</div><div><h3 style="color:var(--cyan);">Anchor Install</h3><p>Prototype at Bhavesh Stone Jasai (confirmed). Real-world compliance validation.</p></div></div><div class="timeline-step" style="margin-bottom:28px;"><div style="font-size:44px;font-weight:800;color:rgba(0,240,255,0.2);">02</div><div><h3 style="color:var(--cyan);">Data-led Scale</h3><p>Technical whitepapers + targeted outreach to MPCB/NGT pressured plants.</p></div></div><div class="timeline-step"><div style="font-size:44px;font-weight:800;color:rgba(0,240,255,0.2);">03</div><div><h3 style="color:var(--cyan);">OEM Bundling</h3><p>Partner with Metso, Propel, Puzzolana — integrate Vanguard as standard equipment.</p></div></div></div>
+    <div class="ai-preview"><h3>Current status</h3><ul class="bullet-list"><li>✅ Electronics & components acquired</li><li>🟡 Airflow sensors & mechanical assembly in progress</li><li>✅ Reactive control functional</li><li>✅ Site locked: Bhavesh Stone Jasai</li><li>🟡 Edge Impulse AI training (Phase 2 roadmap)</li></ul></div>
+  </div>
+</section>
+
+<div class="divider-light"></div>
+
+<!-- CONTACT SECTION - investor ready with phone and name -->
+<section id="contact" class="contact-section">
+  <div class="section-badge">INVESTOR RELATIONS</div>
+  <h2>BUILD THE <span class="highlight">FUTURE</span> OF DUST CONTROL</h2>
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>Direct line</h3>
+      <p style="margin-bottom:20px;">Vanguard is actively seeking strategic investors and industry partners. Deployments ready for Q3 validation.</p>
+      <div class="direct-line">
+        <span style="font-family:'Share Tech Mono';">📞 FOUNDER CONTACT</span><br>
+        <strong style="font-size:24px; color:var(--cyan);">Abhinav Shukla</strong><br>
+        <span style="font-size:18px; letter-spacing:1px;">+91 73047 41237</span><br>
+        <span style="font-size:12px; color:var(--text-dim);">Available for technical & commercial discussions</span>
+      </div>
+      <div class="founder-row">
+        <div class="founder-avatar">AS</div>
+        <div><p style="font-weight:600;">Abhinav Shukla</p><p style="color:var(--text-gray);">Mechanical Engineer, K.J. Somaiya Polytechnic. Industrial environmental tech specialist. Designed Vanguard from first principles.</p></div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form id="investorForm" action="#" method="post">
+        <div class="form-group"><input type="text" placeholder="Full name" required></div>
+        <div class="form-group"><input type="email" placeholder="Email address" required></div>
+        <div class="form-group"><input type="tel" placeholder="Phone / WhatsApp"></div>
+        <div class="form-group"><textarea rows="4" placeholder="Message / investment interest"></textarea></div>
+        <button type="submit" class="btn-submit">Send inquiry →</button>
+        <p style="font-size:10px; margin-top:12px; color:var(--text-dim);">* direct response within 24 hours. We treat all inquiries confidentially.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo" style="font-size:20px;">VANGUARD DSS</div>
+  <div style="font-family:'Share Tech Mono'; font-size:10px; color:var(--text-dim);">© 2025 — Abhinav Shukla | +91 73047 41237 | Investor deck available upon request</div>
+</footer>
+
+<script>
+  // reveal animations
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // bar charts
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar').forEach(b => { const w = b.dataset.w; if(w) b.style.width = w + '%'; });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.chart-card').forEach(c => barObserver.observe(c));
+
+  // counter for numbers
+  function animateCounter(element, target) {
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current += step;
+      if(current >= target) { element.childNodes[0].textContent = target.toLocaleString(); clearInterval(timer); }
+      else element.childNodes[0].textContent = current.toLocaleString();
+    }, 25);
+  }
+  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+  const numberObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target);
+        if(target && !el.classList.contains('counted')) {
+          el.classList.add('counted');
+          animateCounter(el, target);
+        }
+        numberObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNumbers.forEach(n => numberObserver.observe(n));
+
+  const metricNumbers = document.querySelectorAll('[data-metric]');
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        const span = entry.target;
+        const target = parseInt(span.dataset.metric);
+        if(target && !span.classList.contains('counted')) {
+          span.classList.add('counted');
+          let cur = 0;
+          const step = Math.ceil(target / 55);
+          const interval = setInterval(() => {
+            cur += step;
+            if(cur >= target) { span.textContent = target.toLocaleString(); clearInterval(interval); }
+            else span.textContent = cur.toLocaleString();
+          }, 25);
+        }
+        metricObserver.unobserve(span);
+      }
+    });
+  }, { threshold: 0.5 });
+  metricNumbers.forEach(m => metricObserver.observe(m));
+
+  // live panel simulation
+  const liveMetrics = [
+    {bar:'barPM',valId:'pmValue',vals:['1.9 mg/m³','2.1 mg/m³','2.3 mg/m³','2.0 mg/m³'],widths:[32,36,40,34]},
+    {bar:'barAngle',valId:'angleValue',vals:['+14°','+18°','+21°','+16°'],widths:[30,42,48,38]},
+    {bar:'barDuty',valId:'dutyValue',vals:['18%','20%','21%','19%'],widths:[18,20,21,19]}
+  ];
+  let idx = 0;
+  setInterval(() => {
+    liveMetrics.forEach(m => {
+      const curIdx = idx % m.vals.length;
+      document.getElementById(m.valId).textContent = m.vals[curIdx];
+      document.getElementById(m.bar).style.width = m.widths[curIdx] + '%';
+    });
+    idx++;
+  }, 2800);
+  setTimeout(() => { liveMetrics.forEach(m => { document.getElementById(m.bar).style.width = m.widths[1] + '%'; }); }, 200);
+
+  // simple form handler (prevents actual submit but shows alert)
+  const form = document.getElementById('investorForm');
+  if(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('✅ Thank you for reaching out, Abhinav Shukla (+91 73047 41237) will respond within 24 hours.');
+      form.reset();
+    });
+  }
+</script>
+</body>
+</html>
+```
